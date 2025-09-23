@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
-
-
 public class PlayerLook : MonoBehaviour
 {
     public Camera cam;
     private float xRotation = 0f;
 
-    public float xSensitivity = 40f;
-    public float ySensitivity = 40f;
+    public float xSensitivity = 30f;
+    public float ySensitivity = 30f;
 
-     void Start()
+    public void Start()
     {
-       Cursor.lockState = CursorLockMode.Locked;
-      
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
     }
     public void ProcessLook(Vector2 input)
     {
@@ -31,5 +29,6 @@ public class PlayerLook : MonoBehaviour
         transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensitivity);
 
     }
+
 
 }
