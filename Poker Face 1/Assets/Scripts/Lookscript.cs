@@ -29,6 +29,6 @@ public class PlayerLook : MonoBehaviour
         transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensitivity);
 
     }
-
+    
 
 }
