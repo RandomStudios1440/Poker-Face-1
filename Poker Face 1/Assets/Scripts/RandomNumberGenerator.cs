@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
-public class RandomGenerator : MonoBehaviour
+public class RandomNumberGenerator : MonoBehaviour
 {
+    public float RadNum = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -11,6 +13,7 @@ public class RandomGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        RadNum = Random.Range(1, 64);
+        Debug.Log(RadNum);
     }
 }
