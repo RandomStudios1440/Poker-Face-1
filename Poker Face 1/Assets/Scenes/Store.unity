@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 59827589}
   - component: {fileID: 59827588}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Line 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -480,15 +480,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59827586}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10.6, y: 0.12, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.91909796}
+  m_LocalScale: {x: 7.050104, y: 0.0798125, z: 0.66510415}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1418844677}
+  m_Father: {fileID: 837757540}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 416}
+  m_AnchoredPosition: {x: 935.78406, y: 438.28452}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &59827588
@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 146448710}
   - component: {fileID: 146448709}
   m_Layer: 5
-  m_Name: Normal Text
+  m_Name: Normal deck Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -898,7 +898,6 @@ RectTransform:
   m_Children:
   - {fileID: 1102000261}
   - {fileID: 1418844677}
-  - {fileID: 1667695641}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1490,7 +1489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4792d3a29d1cec9489e055db086b3af0, type: 3}
       propertyPath: m_Name
-      value: Cashier
+      value: Merchant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1571,7 +1570,7 @@ GameObject:
   - component: {fileID: 833621613}
   - component: {fileID: 833621612}
   m_Layer: 5
-  m_Name: Shop Text
+  m_Name: Store Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1629,7 +1628,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Shop
+  m_Text: Store
 --- !u!222 &833621613
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1638,6 +1637,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833621610}
   m_CullTransparentMesh: 1
+--- !u!1 &837757539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 837757540}
+  m_Layer: 0
+  m_Name: Lines
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &837757540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837757539}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1407.9736, y: -242.47128, z: -1.8818858}
+  m_LocalScale: {x: 1.503524, y: 1.503524, z: 1.503524}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 59827587}
+  m_Father: {fileID: 1418844677}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &882093425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,7 +1679,7 @@ GameObject:
   m_Component:
   - component: {fileID: 882093426}
   m_Layer: 0
-  m_Name: Item 1
+  m_Name: Normal deck item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1663,8 +1694,8 @@ Transform:
   m_GameObject: {fileID: 882093425}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -427.14514, y: 316.07944, z: -14.992978}
-  m_LocalScale: {x: 1.5421686, y: 1.5421686, z: 1.5421686}
+  m_LocalPosition: {x: -427, y: 316, z: -14}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 146448708}
@@ -1685,7 +1716,7 @@ GameObject:
   - component: {fileID: 902035078}
   - component: {fileID: 902035077}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: Normal deck button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2277,7 +2308,7 @@ GameObject:
   - component: {fileID: 1418844679}
   - component: {fileID: 1418844678}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: store
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2300,9 +2331,10 @@ RectTransform:
   - {fileID: 1547763292}
   - {fileID: 833621611}
   - {fileID: 479315896}
-  - {fileID: 59827587}
+  - {fileID: 837757540}
   - {fileID: 882093426}
   - {fileID: 1406697704}
+  - {fileID: 1667695641}
   m_Father: {fileID: 376369171}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2622,16 +2654,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1667695640}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 376369171}
+  m_Father: {fileID: 1418844677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 60, y: -80}
+  m_AnchoredPosition: {x: -390.00003, y: 120}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1667695642
