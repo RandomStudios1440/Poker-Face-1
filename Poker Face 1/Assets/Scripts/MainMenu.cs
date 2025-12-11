@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(3);
     }
     //the Gameoptions scene is not going to be implmented into the final version 
-    public void GameOptions()
+    public void Gamelobby()
     {
         SceneManager.LoadScene(4);
     }
