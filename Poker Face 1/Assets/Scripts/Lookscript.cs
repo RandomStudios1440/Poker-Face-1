@@ -13,7 +13,8 @@ public class PlayerLook : MonoBehaviour
 
     public void Start()
     {
-       
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
     }
     public void ProcessLook(Vector2 input)
     {
@@ -28,6 +29,10 @@ public class PlayerLook : MonoBehaviour
         transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensitivity);
 
     }
-    
+    private void Update()
+    {
+       
+    }
+
 
 }
