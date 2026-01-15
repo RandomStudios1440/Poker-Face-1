@@ -40,10 +40,10 @@ public class CoroutineFlashingLight : MonoBehaviour
         while (true)
         {
             lightComponent.enabled = true;
-            yield return new WaitForSeconds(onDuration);
+            yield return new WaitForSeconds(Random.Range(1f, 3f));
 
             lightComponent.enabled = false;
-            yield return new WaitForSeconds(offDuration);
+            yield return new WaitForSeconds(Random.Range(0.1f, 0.5f));
         }
     }
 

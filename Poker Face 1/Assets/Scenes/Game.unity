@@ -412,21 +412,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4947755387560923672, guid: de2f89bd0cca34a43a37b81fb94c6714, type: 3}
   m_PrefabInstance: {fileID: 1994079452}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &301449226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301449225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcf82b83d5cefb8468cf2511415338ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 326860282}
-  xSensitivity: 40
-  ySensitivity: 40
 --- !u!114 &301449227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,6 +462,21 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &301449233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301449225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf82b83d5cefb8468cf2511415338ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 326860282}
+  xSensitivity: 30
+  ySensitivity: 30
 --- !u!20 &326860282 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2928043072143849104, guid: de2f89bd0cca34a43a37b81fb94c6714, type: 3}
@@ -1803,7 +1803,7 @@ PrefabInstance:
       addedObject: {fileID: 301449227}
     - targetCorrespondingSourceObject: {fileID: 4947755387560923672, guid: de2f89bd0cca34a43a37b81fb94c6714, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 301449226}
+      addedObject: {fileID: 301449233}
   m_SourcePrefab: {fileID: 100100000, guid: de2f89bd0cca34a43a37b81fb94c6714, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

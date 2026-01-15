@@ -13,7 +13,7 @@ public class RandomNumberGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RadNum = Random.Range(1, 64);
+        RadNum = Random.Range(1, 52);
         Debug.Log(RadNum);
     }
 }
