@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 49e62f001f1cd92428ac26df3e0a9a4e
+guid: d81bd8c833a7a9641987389384449f84
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: PIGG
-    second: {fileID: 2800000, guid: 2d6b176624d297047a95e792343d1da7, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
