@@ -1932,7 +1932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 825577e4a5a2d414c957c032b5c01f39, type: 3}
       propertyPath: m_Name
-      value: card full (1)
+      value: King of Hearts
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3099,9 +3099,9 @@ SceneRoots:
   - {fileID: 582371928}
   - {fileID: 220946110}
   - {fileID: 1522644354}
+  - {fileID: 310311834}
   - {fileID: 1500023448}
   - {fileID: 118042457}
   - {fileID: 939830042}
-  - {fileID: 310311834}
   - {fileID: 1023952402}
   - {fileID: 380526648}
