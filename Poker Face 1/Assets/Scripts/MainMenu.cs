@@ -5,11 +5,11 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadScene(1);
     }
     public void Store()
     {
-        SceneManager.LoadSceneAsync(2);
+        SceneManager.LoadScene(2);
     }
     public void QuitGame()
     {
@@ -22,10 +22,5 @@ public class MainMenu : MonoBehaviour
     public void Options()
     {
         SceneManager.LoadScene(3);
-    }
-    //the Gameoptions scene is not going to be implmented into the final version 
-    public void Gamelobby()
-    {
-        SceneManager.LoadScene(4);
     }
 }
