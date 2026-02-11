@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
+    public Animator transition;
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
