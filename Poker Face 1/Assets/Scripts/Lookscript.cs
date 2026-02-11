@@ -1,37 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
-public class PlayerLook : MonoBehaviour
+public class MouseLook : MonoBehaviour
 {
-    public Camera cam;
+    [Header("Mouse Settings")]
+    [SerializeField] private float mouseSensitivity = 100f;
+
+    [Header("Rotation Limits")]
+    [SerializeField] private float minYRotation = -90f;
+    [SerializeField] private float maxYRotation = 90f;
+
     private float xRotation = 0f;
+    private float yRotation = 0f;
 
-    public float xSensitivity = 30f;
-    public float ySensitivity = 30f;
-
-    public void Start()
+    void Start()
     {
-     
-    }
-    public void ProcessLook(Vector2 input)
-    {
-        float mouseX = input.x;
-        float mouseY = input.y;
-        //calculate camera rotation for looking up and down
-        xRotation -= (mouseY * Time.deltaTime) * ySensitivity;
-        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
-        //apply this to our camera transform
-        cam.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-        //rotate player to look left and right
-        transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensitivity);
-
-    }
-    private void Update()
-    {
-       
+        // Lock cursor to center of screen
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
+    void Update()
+    {
+        // Get mouse input
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
+        // Calculate rotations
+        yRotation += mouseX;
+        xRotation -= mouseY;
+
+        // Clamp vertical rotation to prevent flipping
+        xRotation = Mathf.Clamp(xRotation, minYRotation, maxYRotation);
+
+        // Apply rotation to camera
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
+    }
 }
