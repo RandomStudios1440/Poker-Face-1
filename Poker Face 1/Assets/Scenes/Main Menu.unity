@@ -597,7 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightComponent: {fileID: 231850436}
-  onDuration: 3
+  onDuration: 2.5
   offDuration: 0.1
 --- !u!108 &231850436 stripped
 Light:
