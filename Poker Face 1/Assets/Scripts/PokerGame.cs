@@ -26,6 +26,7 @@ public class PokerGame : MonoBehaviour
     public Button foldButton;
     public Button callButton;
     public Button raiseButton;
+    public Button checkButton;
     
     enum GameState { WaitingToStart, Dealing, PreFlop, Flop, Turn, River, Showdown, RoundEnd }
     GameState currentState = GameState.WaitingToStart;
@@ -296,6 +297,7 @@ public class PokerGame : MonoBehaviour
         if (foldButton) foldButton.interactable = enable;
         if (callButton) callButton.interactable = enable;
         if (raiseButton) raiseButton.interactable = enable;
+        if (checkButton) checkButton.interactable = enable;
     }
     
     void UpdateUI(string status)
