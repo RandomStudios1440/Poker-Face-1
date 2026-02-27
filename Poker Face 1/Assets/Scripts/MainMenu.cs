@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
-    public Animator transition;
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
@@ -25,6 +24,8 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(3);
     }
-   
-
+    public void Play()
+    {
+        SceneManager.LoadScene(4);
+    }
 }

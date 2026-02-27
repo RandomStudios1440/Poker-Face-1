@@ -62,10 +62,9 @@ public class MusicManager : MonoBehaviour
         {
             audioSource.Pause();
         }
-        else
+        else if (audioSource.time == 0 || !audioSource.isPlaying)
         {
-            audioSource.Stop();
-            audioSource.Play();
+            audioSource.UnPause();
         }
     }
 

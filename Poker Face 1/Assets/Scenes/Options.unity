@@ -2103,7 +2103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f280f44d6f737546b276348c08617f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transition: {fileID: 0}
 --- !u!1 &504144326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2610,7 +2609,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
