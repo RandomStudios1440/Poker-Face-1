@@ -264,7 +264,7 @@ MonoBehaviour:
   audioSource: {fileID: 100292477}
   musicTracks: []
   shuffleOnStart: 1
-  loopPlaylist: 1
+  loopPlaylist: 0
   scenesToMuteMusic:
   - Game
   - Store
