@@ -152,7 +152,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 0.85
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -606,7 +606,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f280f44d6f737546b276348c08617f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transition: {fileID: 0}
 --- !u!114 &169644714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,7 +1195,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 169644713}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1546,7 +1545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f280f44d6f737546b276348c08617f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transition: {fileID: 0}
 --- !u!1 &488767442
 GameObject:
   m_ObjectHideFlags: 0
