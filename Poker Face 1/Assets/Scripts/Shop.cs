@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class Shop : MonoBehaviour
 {
-    private int Money = 7887;
+    private int Money = 99;
 
     private int numOfNormal = 0;
 
