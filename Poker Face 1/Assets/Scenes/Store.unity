@@ -3434,7 +3434,7 @@ GameObject:
   - component: {fileID: 1858345787}
   - component: {fileID: 1858345786}
   m_Layer: 5
-  m_Name: Shop Background
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3456,8 +3456,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 250.00003, y: 204}
-  m_SizeDelta: {x: 1120, y: 868}
+  m_AnchoredPosition: {x: -10.3651, y: 202.6639}
+  m_SizeDelta: {x: 748.0485, y: 433.2613}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1858345786
 MonoBehaviour:
@@ -3472,14 +3472,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7482667652216324306, guid: c6ba557cad0ed374daf855195e8251dc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
