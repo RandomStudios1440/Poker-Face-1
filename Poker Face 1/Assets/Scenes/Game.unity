@@ -2432,12 +2432,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920731762}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -60, y: 0, z: 4.84}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.2441597, y: 1.4099998, z: 0.98807}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1283665253}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &939830042
 PrefabInstance:
@@ -3097,7 +3097,8 @@ Transform:
   m_LocalPosition: {x: -60.24416, y: 0, z: 4.85193}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 920731763}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1283665254
@@ -4153,72 +4154,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 2043681380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdf3c5cbfbeb79140b76fb1d3182abb1, type: 3}
+  m_Script: {fileID: 11500000, guid: cf0644a8a5ed83b4aae18b67ab6aa79c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cards:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  cardPrefab: {fileID: 919132149155446097, guid: 1025418981b2c444fa92de25c9db64e0, type: 3}
+  cardPrefab: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 194554903}
   - {fileID: 960591284}
   - {fileID: 1283665253}
   - {fileID: 282806835}
-  - {fileID: 920731763}
-  - {fileID: 194554903}
+  - {fileID: 310311834}
   - {fileID: 2043681381}
   - {fileID: 406985649}
   - {fileID: 582371928}
@@ -4227,6 +4177,5 @@ SceneRoots:
   - {fileID: 1500023448}
   - {fileID: 118042457}
   - {fileID: 939830042}
-  - {fileID: 310311834}
   - {fileID: 801304743}
   - {fileID: 169615709}

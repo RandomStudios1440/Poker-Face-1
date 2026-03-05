@@ -7,7 +7,7 @@ public class PokerGame : MonoBehaviour
 {
     public static PokerGame Instance;
     
-    public Deck deck;
+    public CardDeck deck;
     public PokerPlayer humanPlayer;
     public PokerPlayer cpuPlayer;
     
