@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 135177653}
   - component: {fileID: 135177652}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Options button text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1557,7 +1557,7 @@ GameObject:
   - component: {fileID: 488767445}
   - component: {fileID: 488767444}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Store button text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1636,7 +1636,7 @@ GameObject:
   - component: {fileID: 511174307}
   - component: {fileID: 511174306}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Play button text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2286,7 +2286,7 @@ GameObject:
   - component: {fileID: 999303452}
   - component: {fileID: 999303451}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Exit button text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
