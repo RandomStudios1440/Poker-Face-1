@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     }
     public void Store()
     {
-        SceneManager.LoadScene(2);
+        SceneTransition.Instance.LoadScene(2);
     }
     public void QuitGame()
     {
@@ -18,18 +18,18 @@ public class MainMenu : MonoBehaviour
     }
     public void Menu()
     {
-        SceneManager.LoadScene(0);
+        SceneTransition.Instance.LoadScene(0);
     }
     public void Options()
     {
-        SceneManager.LoadScene(3);
+        SceneTransition.Instance.LoadScene(3);
     }
     public void Play()
     {
-        SceneManager.LoadScene(4);
+        SceneTransition.Instance.LoadScene(4);
     }
     public void Begin()
     {
-        SceneManager.LoadScene(5);
+        SceneTransition.Instance.LoadScene(5);
     }
 }
