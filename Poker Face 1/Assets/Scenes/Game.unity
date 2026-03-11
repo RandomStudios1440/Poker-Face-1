@@ -4551,7 +4551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cards:
   - {fileID: 0}
-  cardPrefab: {fileID: 0}
+  cardPrefab: {fileID: 919132149155446097, guid: 946babe7498af6e49bb1d0ae02407d4a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
