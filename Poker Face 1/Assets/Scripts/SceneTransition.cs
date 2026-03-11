@@ -7,7 +7,6 @@ public class SceneTransition : MonoBehaviour
     public static SceneTransition Instance { get; private set; }
 
     [SerializeField] private CanvasGroup fadeCanvasGroup;
-    [SerializeField] private UnityEngine.UI.Image fadeImage;
     [SerializeField] private float fadeDuration = 1f;
 
     private void Awake()
@@ -16,10 +15,6 @@ public class SceneTransition : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            if (fadeCanvasGroup != null)
-            {
-                DontDestroyOnLoad(fadeCanvasGroup.transform.root.gameObject);
-            }
         }
         else
         {
@@ -29,65 +24,50 @@ public class SceneTransition : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        StartCoroutine(TransitionToScene(sceneName, fadeDuration, Color.black));
+        StartCoroutine(TransitionToScene(sceneName));
     }
 
     public void LoadScene(int sceneIndex)
     {
-        StartCoroutine(TransitionToScene(sceneIndex, fadeDuration, Color.black));
+        StartCoroutine(TransitionToScene(sceneIndex));
     }
 
-    public void LoadScene(string sceneName, float customDuration)
+    private IEnumerator TransitionToScene(string sceneName)
     {
-        StartCoroutine(TransitionToScene(sceneName, customDuration, Color.black));
-    }
+        // Fade out
+        yield return StartCoroutine(Fade(1f));
 
-    public void LoadScene(int sceneIndex, float customDuration)
-    {
-        StartCoroutine(TransitionToScene(sceneIndex, customDuration, Color.black));
-    }
-
-    public void LoadScene(string sceneName, float customDuration, Color fadeColor)
-    {
-        StartCoroutine(TransitionToScene(sceneName, customDuration, fadeColor));
-    }
-
-    public void LoadScene(int sceneIndex, float customDuration, Color fadeColor)
-    {
-        StartCoroutine(TransitionToScene(sceneIndex, customDuration, fadeColor));
-    }
-
-    private IEnumerator TransitionToScene(string sceneName, float duration, Color fadeColor)
-    {
-        fadeImage.color = fadeColor;
-        yield return StartCoroutine(Fade(1f, duration));
+        // Load scene
         SceneManager.LoadScene(sceneName);
-        yield return StartCoroutine(Fade(0f, duration));
+
+        // Fade in
+        yield return StartCoroutine(Fade(0f));
     }
 
-    private IEnumerator TransitionToScene(int sceneIndex, float duration, Color fadeColor)
+    private IEnumerator TransitionToScene(int sceneIndex)
     {
-        fadeImage.color = fadeColor;
-        yield return StartCoroutine(Fade(1f, duration));
+        // Fade out
+        yield return StartCoroutine(Fade(1f));
+
+        // Load scene
         SceneManager.LoadScene(sceneIndex);
-        yield return StartCoroutine(Fade(0f, duration));
+
+        // Fade in
+        yield return StartCoroutine(Fade(0f));
     }
 
-    private IEnumerator Fade(float targetAlpha, float duration)
+    private IEnumerator Fade(float targetAlpha)
     {
         float startAlpha = fadeCanvasGroup.alpha;
         float elapsed = 0f;
 
-        fadeCanvasGroup.blocksRaycasts = targetAlpha > 0;
-
-        while (elapsed < duration)
+        while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
-            fadeCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, elapsed / duration);
+            fadeCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, elapsed / fadeDuration);
             yield return null;
         }
 
         fadeCanvasGroup.alpha = targetAlpha;
-        fadeCanvasGroup.blocksRaycasts = targetAlpha > 0;
     }
 }

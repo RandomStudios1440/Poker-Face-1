@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneTransition.Instance.LoadScene(1, 2f, Color.black);
+        SceneManager.LoadScene(1);
     }
     public void Store()
     {
