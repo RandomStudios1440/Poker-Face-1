@@ -6,11 +6,17 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        if (SceneTransition.Instance != null)
+            SceneTransition.Instance.LoadScene(1);
+        else
+            SceneManager.LoadScene(1);
     }
     public void Store()
     {
-        SceneManager.LoadScene(2);
+        if (SceneTransition.Instance != null)
+            SceneTransition.Instance.LoadScene(2);
+        else
+            SceneManager.LoadScene(2);
     }
     public void QuitGame()
     {
@@ -18,18 +24,30 @@ public class MainMenu : MonoBehaviour
     }
     public void Menu()
     {
-        SceneManager.LoadScene(0);
+        if (SceneTransition.Instance != null)
+            SceneTransition.Instance.LoadScene(0);
+        else
+            SceneManager.LoadScene(0);
     }
     public void Options()
     {
-        SceneManager.LoadScene(3);
+        if (SceneTransition.Instance != null)
+            SceneTransition.Instance.LoadScene(3);
+        else
+            SceneManager.LoadScene(3);
     }
     public void Play()
     {
-        SceneManager.LoadScene(4);
+        if (SceneTransition.Instance != null)
+            SceneTransition.Instance.LoadScene(4);
+        else
+            SceneManager.LoadScene(4);
     }
     public void Begin()
     {
-        SceneManager.LoadScene(5);
+        if (SceneTransition.Instance != null)
+            SceneTransition.Instance.LoadScene(5);
+        else
+            SceneManager.LoadScene(5);
     }
 }
