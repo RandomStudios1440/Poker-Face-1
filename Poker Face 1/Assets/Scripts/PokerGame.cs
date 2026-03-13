@@ -304,7 +304,7 @@ public class PokerGame : MonoBehaviour
     {
         if (gameStatusText) gameStatusText.text = status;
         if (potText) potText.text = "Pot: $" + pot;
-        if (playerChipsText) playerChipsText.text = "Your Chips: $" + humanPlayer.chips;
-        if (cpuChipsText) cpuChipsText.text = "CPU Chips: $" + cpuPlayer.chips;
+        if (playerChipsText) playerChipsText.text = "$" + humanPlayer.chips;
+        if (cpuChipsText) cpuChipsText.text = "$" + cpuPlayer.chips;
     }
 }
