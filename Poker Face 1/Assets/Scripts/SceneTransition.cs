@@ -29,31 +29,61 @@ public class SceneTransition : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        if (Instance == null)
+        {
+            SceneManager.LoadScene(sceneName);
+            return;
+        }
         StartCoroutine(TransitionToScene(sceneName, fadeDuration, Color.black));
     }
 
     public void LoadScene(int sceneIndex)
     {
+        if (Instance == null)
+        {
+            SceneManager.LoadScene(sceneIndex);
+            return;
+        }
         StartCoroutine(TransitionToScene(sceneIndex, fadeDuration, Color.black));
     }
 
     public void LoadScene(string sceneName, float customDuration)
     {
+        if (Instance == null)
+        {
+            SceneManager.LoadScene(sceneName);
+            return;
+        }
         StartCoroutine(TransitionToScene(sceneName, customDuration, Color.black));
     }
 
     public void LoadScene(int sceneIndex, float customDuration)
     {
+        if (Instance == null)
+        {
+            SceneManager.LoadScene(sceneIndex);
+            return;
+        }
         StartCoroutine(TransitionToScene(sceneIndex, customDuration, Color.black));
     }
 
     public void LoadScene(string sceneName, float customDuration, Color fadeColor)
     {
+        if (Instance == null)
+        {
+            SceneManager.LoadScene(sceneName);
+            return;
+        }
         StartCoroutine(TransitionToScene(sceneName, customDuration, fadeColor));
     }
 
     public void LoadScene(int sceneIndex, float customDuration, Color fadeColor)
     {
+        if (Instance == null)
+        {
+            SceneManager.LoadScene(sceneIndex);
+            return;
+        }
         StartCoroutine(TransitionToScene(sceneIndex, customDuration, fadeColor));
     }
 
@@ -83,23 +113,16 @@ public class SceneTransition : MonoBehaviour
     {
         if (fadeCanvasGroup == null) yield break;
 
+        float startAlpha = fadeCanvasGroup.alpha;
+        float elapsed = 0f;
+
         fadeCanvasGroup.blocksRaycasts = targetAlpha > 0;
 
-        if (targetAlpha > 0)
+        while (elapsed < duration)
         {
-            fadeCanvasGroup.alpha = 1f;
-            yield return new WaitForSeconds(0.1f);
-        }
-        else
-        {
-            float elapsed = 0f;
-            float fadeDur = duration * 0.3f;
-            while (elapsed < fadeDur)
-            {
-                elapsed += Time.deltaTime;
-                fadeCanvasGroup.alpha = Mathf.Lerp(1f, 0f, elapsed / fadeDur);
-                yield return null;
-            }
+            elapsed += Time.deltaTime;
+            fadeCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, elapsed / duration);
+            yield return null;
         }
 
         fadeCanvasGroup.alpha = targetAlpha;
