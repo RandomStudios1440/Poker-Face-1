@@ -2041,7 +2041,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeCanvasGroup: {fileID: 825885076}
-  fadeDuration: 0.35
+  fadeImage: {fileID: 0}
+  fadeDuration: 0.5
 --- !u!225 &825885076
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4058,8 +4059,8 @@ SceneRoots:
   - {fileID: 169644712}
   - {fileID: 100292479}
   - {fileID: 949201973}
-  - {fileID: 425699794}
   - {fileID: 825885080}
+  - {fileID: 425699794}
   - {fileID: 1036853826}
   - {fileID: 2141560421}
   - {fileID: 2105672060}
