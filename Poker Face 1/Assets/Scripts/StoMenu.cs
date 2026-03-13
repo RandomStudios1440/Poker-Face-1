@@ -29,4 +29,14 @@ public class StoMenu : MonoBehaviour
     {
         shopIndex = 0;
     }
+
+    public void BuyOtherCardDeck()
+    {
+        
+    }
+
+    public void BuyOtherCardDecktwo()
+    {
+
+    }
 }
