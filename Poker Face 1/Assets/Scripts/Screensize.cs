@@ -8,7 +8,7 @@ public class Screensize : MonoBehaviour
     public Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
-    private void Start()
+    void Start()
     {
         resolutions = Screen.resolutions;
 
@@ -21,6 +21,7 @@ public class Screensize : MonoBehaviour
             string option = resolutions[i].width + "x" + resolutions[i].height; 
             options.Add(option);
         }
+    resolutionDropdown.AddOptions(options);
     }
     public void SetFullScreen (bool isFullscreen)
 
