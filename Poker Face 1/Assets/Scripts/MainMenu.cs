@@ -49,5 +49,6 @@ public class MainMenu : MonoBehaviour
             SceneTransition.Instance.LoadScene(5);
         else
             SceneManager.LoadScene(5);
+
     }
-}
+}   

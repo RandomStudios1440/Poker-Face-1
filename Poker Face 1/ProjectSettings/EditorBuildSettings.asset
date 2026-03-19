@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Round Begin.unity
     guid: a2fc56545aa0eda468d1cd3383bc0c7a
+  - enabled: 1
+    path: Assets/Scenes/Rules.unity
+    guid: ed7922bbcd9896547ae3ebcd21f74af2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
