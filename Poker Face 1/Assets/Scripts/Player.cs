@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public int Chips { get; private set; }
     public bool HasFolded { get; private set; }
 
-    public Player (string name, int startingChips = 1000)
+    public Player(string name, int startingChips = 1000)
     {
         Name = name;
         Chips = startingChips;
