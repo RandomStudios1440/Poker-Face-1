@@ -3004,10 +3004,7 @@ RectTransform:
   - {fileID: 1568480688}
   - {fileID: 568525055}
   - {fileID: 309007901}
-<<<<<<< HEAD
   - {fileID: 615137579}
-=======
->>>>>>> parent of 80cbd62 (bnglknAKJBFEQ)
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
