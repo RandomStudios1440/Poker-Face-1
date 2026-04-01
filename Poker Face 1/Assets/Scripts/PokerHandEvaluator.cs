@@ -17,52 +17,52 @@ public class PokerHandEvaluator : MonoBehaviour
         StraightFlush = 8,
         RoyalFlush = 9
     }
-    
+
     public static HandRank EvaluateHand(List<Card> hand)
     {
         if (hand.Count < 5) return HandRank.HighCard;
-        
+
         bool isFlush = IsFlush(hand);
         bool isStraight = IsStraight(hand);
-        
+
         if (isFlush && isStraight && hand.Min(c => c.GetValue()) == 10)
             return HandRank.RoyalFlush;
-        
+
         if (isFlush && isStraight)
             return HandRank.StraightFlush;
-        
+
         var rankCounts = GetRankCounts(hand);
         var counts = rankCounts.Values.OrderByDescending(v => v).ToList();
-        
+
         if (counts[0] == 4)
             return HandRank.FourOfAKind;
-        
+
         if (counts[0] == 3 && counts[1] == 2)
             return HandRank.FullHouse;
-        
+
         if (isFlush)
             return HandRank.Flush;
-        
+
         if (isStraight)
             return HandRank.Straight;
-        
+
         if (counts[0] == 3)
             return HandRank.ThreeOfAKind;
-        
+
         if (counts[0] == 2 && counts[1] == 2)
             return HandRank.TwoPair;
-        
+
         if (counts[0] == 2)
             return HandRank.OnePair;
-        
+
         return HandRank.HighCard;
     }
-    
+
     static bool IsFlush(List<Card> hand)
     {
         return hand.All(c => c.suit == hand[0].suit);
     }
-    
+
     static bool IsStraight(List<Card> hand)
     {
         var sortedValues = hand.Select(c => c.GetValue()).OrderBy(v => v).ToList();
@@ -73,7 +73,7 @@ public class PokerHandEvaluator : MonoBehaviour
         }
         return true;
     }
-    
+
     static Dictionary<int, int> GetRankCounts(List<Card> hand)
     {
         var counts = new Dictionary<int, int>();
