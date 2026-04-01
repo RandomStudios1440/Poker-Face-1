@@ -4,7 +4,7 @@ using UnityEngine;
 public class PokerPlayer : MonoBehaviour
 {
     public List<Card> hand = new List<Card>();
-    public int chips = 10000;
+    public int chips = 1000;
     public int currentBet = 0;
     public bool isHuman = true;
     public bool hasFolded = false;

@@ -1,312 +1,310 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PokerGame
+public class PokerGame : MonoBehaviour
 {
-    private Player humanPlayer;
-    private Player cpuPlayer;
-    private Deck deck;
-    private int pot;
-    private int currentBet;
-    private System.Random random;
-
-    public PokerGame(string playerName)
+    public static PokerGame Instance;
+    
+    public CardDeck deck;
+    public PokerPlayer humanPlayer;
+    public PokerPlayer cpuPlayer;
+    
+    public List<Card> communityCards = new List<Card>();
+    public Transform communityCardsPosition;
+    
+    public int pot = 0;
+    public int smallBlind = 10;
+    public int bigBlind = 20;
+    
+    public Text potText;
+    public Text playerChipsText;
+    public Text cpuChipsText;
+    public Text gameStatusText;
+    
+    public Button foldButton;
+    public Button callButton;
+    public Button raiseButton;
+    public Button checkButton;
+    
+    enum GameState { WaitingToStart, Dealing, PreFlop, Flop, Turn, River, Showdown, RoundEnd }
+    GameState currentState = GameState.WaitingToStart;
+    
+    void Awake()
     {
-        humanPlayer = new Player(playerName);
-        cpuPlayer = new Player("CPU");
-        deck = new Deck();
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
+    
+    void Start()
+    {
+        StartCoroutine(StartNewRound());
+    }
+    
+    IEnumerator StartNewRound()
+    {
+        currentState = GameState.Dealing;
+        UpdateUI("New round starting...");
+        
+        yield return new WaitForSeconds(1f);
+        
+        ClearTable();
         pot = 0;
-        currentBet = 0;
-        random = new System.Random();
+        
+        // Post blinds
+        humanPlayer.PlaceBet(smallBlind);
+        cpuPlayer.PlaceBet(bigBlind);
+        pot = smallBlind + bigBlind;
+        
+        UpdateUI("Dealing cards...");
+        
+        // Deal 2 cards to each player
+        for (int i = 0; i < 2; i++)
+        {
+            humanPlayer.AddCardToHand(deck.DrawCard());
+            yield return new WaitForSeconds(0.3f);
+            cpuPlayer.AddCardToHand(deck.DrawCard());
+            yield return new WaitForSeconds(0.3f);
+        }
+        
+        // Flip human player cards face up
+        foreach (Card card in humanPlayer.hand)
+        {
+            card.Flip();
+        }
+        
+        UpdateUI("Your turn - Check, Call, or Raise");
+        currentState = GameState.PreFlop;
+        EnablePlayerActions(true);
     }
-
-    public void StartNewRound()
-    {
-        // Reset for new round
-        humanPlayer.NewRound();
-        cpuPlayer.NewRound();
-
-        deck = new Deck();
-        pot = 0;
-        currentBet = 0;
-
-        // Deal 5 cards to each player
-        for (int i = 0; i < 5; i++)
-        {
-            if (!humanPlayer.HasFolded)
-                humanPlayer.DealCard(deck.DealCard());
-            if (!cpuPlayer.HasFolded)
-                cpuPlayer.DealCard(deck.DealCard());
-        }
-
-        Debug.Log("New round started! Cards dealt.");
-        ShowPlayerHands();
-    }
-
-    public void ShowPlayerHands()
-    {
-        // Show human player's hand
-        if (!humanPlayer.HasFolded)
-        {
-            Debug.Log($"{humanPlayer.Name}: {humanPlayer.Hand}");
-            if (humanPlayer.Hand.Cards.Count == 5)
-            {
-                Debug.Log($"Hand Rank: {humanPlayer.Hand.GetHandRank()}");
-            }
-        }
-
-        // Don't show CPU's cards (hidden)
-        if (!cpuPlayer.HasFolded)
-        {
-            Debug.Log($"{cpuPlayer.Name}: [Hidden]");
-        }
-    }
-
-    public void PlayerBet(int amount)
-    {
-        if (humanPlayer.HasFolded)
-        {
-            Debug.Log("You have already folded.");
-            return;
-        }
-        if (humanPlayer.IsAllIn)
-        {
-            Debug.Log("You are already all-in.");
-            return;
-        }
-
-        try
-        {
-            humanPlayer.Bet(amount);
-            pot += amount;
-            if (amount > currentBet)
-                currentBet = amount;
-
-            Debug.Log($"{humanPlayer.Name} bets {amount}. Pot: {pot}");
-
-            // CPU responds to player's bet
-            CPUTurn();
-        }
-        catch (Exception ex)
-        {
-            Debug.Log($"Error: {ex.Message}");
-        }
-    }
-
-    public void PlayerAllIn()
-    {
-        if (humanPlayer.HasFolded)
-        {
-            Debug.Log("You have already folded.");
-            return;
-        }
-        if (humanPlayer.IsAllIn)
-        {
-            Debug.Log("You are already all-in.");
-            return;
-        }
-
-        int allInAmount = humanPlayer.Chips;
-        pot += allInAmount;
-        if (allInAmount > currentBet)
-            currentBet = allInAmount;
-        humanPlayer.AllIn();
-
-        Debug.Log($"{humanPlayer.Name} goes ALL-IN with {allInAmount}! Pot: {pot}");
-        CPUTurn();
-    }
-
-    // Swap up to 3 cards. indices = positions in hand (0-4) to discard.
-    public void PlayerSwapCards(List<int> indices)
-    {
-        if (humanPlayer.HasFolded || humanPlayer.IsAllIn)
-        {
-            Debug.Log("Cannot swap cards right now.");
-            return;
-        }
-        if (indices.Count > 3)
-        {
-            Debug.Log("You can only swap up to 3 cards.");
-            return;
-        }
-
-        // Sort descending so removing by index doesn't shift positions
-        indices = indices.OrderByDescending(i => i).ToList();
-        foreach (int i in indices)
-        {
-            if (i < 0 || i >= humanPlayer.Hand.Cards.Count) continue;
-            humanPlayer.Hand.Cards.RemoveAt(i);
-            humanPlayer.DealCard(deck.DealCard());
-        }
-
-        Debug.Log($"Swapped {indices.Count} card(s). New hand: {humanPlayer.Hand}");
-        Debug.Log($"Hand Rank: {humanPlayer.Hand.GetHandRank()}");
-    }
-
+    
     public void PlayerFold()
     {
-        humanPlayer.Fold();
-        Debug.Log($"{humanPlayer.Name} folds.");
+        humanPlayer.hasFolded = true;
+        EnablePlayerActions(false);
+        StartCoroutine(EndRound(cpuPlayer));
     }
-
-    private void CPUTurn()
+    
+    public void PlayerCall()
     {
-        if (cpuPlayer.HasFolded || cpuPlayer.IsAllIn)
-            return;
-
-        // Simple CPU AI logic
-        int handStrength = EvaluateHandStrength(cpuPlayer.Hand);
-        int decision = random.Next(100);
-
-        // Decision making based on hand strength
-        if (handStrength >= 7) // Strong hand (Straight or better)
-        {
-            int raiseAmount = currentBet + random.Next(50, 150);
-            if (raiseAmount >= cpuPlayer.Chips) // Go all-in instead
-            {
-                pot += cpuPlayer.Chips;
-                currentBet = cpuPlayer.Chips;
-                cpuPlayer.AllIn();
-                Debug.Log($"CPU goes ALL-IN! Pot: {pot}");
-            }
-            else
-            {
-                cpuPlayer.Bet(raiseAmount);
-                pot += raiseAmount;
-                currentBet = raiseAmount;
-                Debug.Log($"CPU raises to {raiseAmount}. Pot: {pot}");
-            }
-        }
-        else if (handStrength >= 4) // Medium hand (Two Pair or Three of a Kind)
-        {
-            if (decision < 70)
-            {
-                CPUCall();
-            }
-            else
-            {
-                int raiseAmount = currentBet + random.Next(20, 50);
-                if (raiseAmount >= cpuPlayer.Chips)
-                {
-                    pot += cpuPlayer.Chips;
-                    currentBet = cpuPlayer.Chips;
-                    cpuPlayer.AllIn();
-                    Debug.Log($"CPU goes ALL-IN! Pot: {pot}");
-                }
-                else
-                {
-                    cpuPlayer.Bet(raiseAmount);
-                    pot += raiseAmount;
-                    currentBet = raiseAmount;
-                    Debug.Log($"CPU raises to {raiseAmount}. Pot: {pot}");
-                }
-            }
-        }
-        else if (handStrength >= 2) // Weak hand (One Pair)
-        {
-            if (decision < 50)
-                CPUCall();
-            else
-            {
-                cpuPlayer.Fold();
-                Debug.Log("CPU folds.");
-            }
-        }
-        else // Very weak hand (High Card)
-        {
-            if (decision < 20)
-                CPUCall();
-            else
-            {
-                cpuPlayer.Fold();
-                Debug.Log("CPU folds.");
-            }
-        }
+        int callAmount = cpuPlayer.currentBet - humanPlayer.currentBet;
+        humanPlayer.PlaceBet(callAmount);
+        pot += callAmount;
+        EnablePlayerActions(false);
+        StartCoroutine(CPUTurn());
     }
-
-    private void CPUCall()
+    
+    public void PlayerRaise()
     {
-        if (currentBet >= cpuPlayer.Chips)
+        int raiseAmount = bigBlind * 2;
+        humanPlayer.PlaceBet(raiseAmount);
+        pot += raiseAmount;
+        EnablePlayerActions(false);
+        StartCoroutine(CPUTurn());
+    }
+    
+    IEnumerator CPUTurn()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        UpdateUI("CPU is thinking...");
+        
+        // Simple CPU AI
+        int decision = Random.Range(0, 100);
+        
+        if (decision < 20)
         {
-            // Can't fully cover — go all-in
-            pot += cpuPlayer.Chips;
-            cpuPlayer.AllIn();
-            Debug.Log($"CPU goes ALL-IN to call! Pot: {pot}");
+            UpdateUI("CPU folds");
+            cpuPlayer.hasFolded = true;
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(EndRound(humanPlayer));
+        }
+        else if (decision < 70)
+        {
+            int callAmount = humanPlayer.currentBet - cpuPlayer.currentBet;
+            cpuPlayer.PlaceBet(callAmount);
+            pot += callAmount;
+            UpdateUI("CPU calls");
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(DealCommunityCards());
         }
         else
         {
-            cpuPlayer.Bet(currentBet);
-            pot += currentBet;
-            Debug.Log($"CPU calls {currentBet}. Pot: {pot}");
+            int raiseAmount = bigBlind * 2;
+            cpuPlayer.PlaceBet(raiseAmount);
+            pot += raiseAmount;
+            UpdateUI("CPU raises!");
+            yield return new WaitForSeconds(1f);
+            EnablePlayerActions(true);
         }
     }
-
-    private int EvaluateHandStrength(Hand hand)
+    
+    IEnumerator DealCommunityCards()
     {
-        if (hand.Cards.Count < 5)
-            return 0;
-
-        string rank = hand.GetHandRank();
-
-        // Return strength value based on hand rank
-        if (rank.Contains("Royal Flush")) return 10;
-        if (rank.Contains("Straight Flush")) return 9;
-        if (rank.Contains("Four of a Kind")) return 8;
-        if (rank.Contains("Full House")) return 7;
-        if (rank.Contains("Flush")) return 6;
-        if (rank.Contains("Straight")) return 5;
-        if (rank.Contains("Three of a Kind")) return 4;
-        if (rank.Contains("Two Pair")) return 3;
-        if (rank.Contains("One Pair")) return 2;
-        return 1; // High Card
-    }
-
-    public void DetermineWinner()
-    {
-        var activePlayers = new List<Player>();
-        if (!humanPlayer.HasFolded && humanPlayer.Hand.Cards.Count == 5)
-            activePlayers.Add(humanPlayer);
-        if (!cpuPlayer.HasFolded && cpuPlayer.Hand.Cards.Count == 5)
-            activePlayers.Add(cpuPlayer);
-
-        if (activePlayers.Count == 0)
+        if (currentState == GameState.PreFlop)
         {
-            Debug.Log("No active players!");
-            return;
+            UpdateUI("Dealing the Flop...");
+            currentState = GameState.Flop;
+            
+            for (int i = 0; i < 3; i++)
+            {
+                Card card = deck.DrawCard();
+                communityCards.Add(card);
+                PositionCommunityCard(card, communityCards.Count - 1);
+                card.Flip();
+                yield return new WaitForSeconds(0.5f);
+            }
         }
-
-        if (activePlayers.Count == 1)
+        else if (currentState == GameState.Flop)
         {
-            var soleWinner = activePlayers[0];
-            soleWinner.WinChips(pot);
-            Debug.Log($"{soleWinner.Name} wins by default! Pot: {pot}");
-            ShowFinalStandings();
-            return;
+            UpdateUI("Dealing the Turn...");
+            currentState = GameState.Turn;
+            
+            Card card = deck.DrawCard();
+            communityCards.Add(card);
+            PositionCommunityCard(card, communityCards.Count - 1);
+            card.Flip();
+            yield return new WaitForSeconds(0.5f);
         }
-
-        // Both players still in - compare hands
-        var winner = activePlayers.OrderByDescending(p => EvaluateHandStrength(p.Hand)).First();
-        winner.WinChips(pot);
-
-        Debug.Log($"\n--- WINNER ---");
-        Debug.Log($"{winner.Name} wins with {winner.Hand.GetHandRank()}!");
-        Debug.Log($"Winning hand: {winner.Hand}");
-
-        // Reveal CPU's hand
-        Debug.Log($"\nCPU's hand: {cpuPlayer.Hand}");
-        Debug.Log($"CPU's rank: {cpuPlayer.Hand.GetHandRank()}");
-
-        Debug.Log($"Pot won: {pot}");
-
-        ShowFinalStandings();
+        else if (currentState == GameState.Turn)
+        {
+            UpdateUI("Dealing the River...");
+            currentState = GameState.River;
+            
+            Card card = deck.DrawCard();
+            communityCards.Add(card);
+            PositionCommunityCard(card, communityCards.Count - 1);
+            card.Flip();
+            yield return new WaitForSeconds(0.5f);
+        }
+        
+        if (currentState == GameState.River)
+        {
+            StartCoroutine(Showdown());
+        }
+        else
+        {
+            EnablePlayerActions(true);
+        }
     }
-
-    public void ShowFinalStandings()
+    
+    IEnumerator Showdown()
     {
-        Debug.Log("\n--- CHIP COUNTS ---");
-        Debug.Log(humanPlayer.ToString());
-        Debug.Log(cpuPlayer.ToString());
+        currentState = GameState.Showdown;
+        UpdateUI("Showdown!");
+        
+        yield return new WaitForSeconds(1f);
+        
+        // Flip CPU cards
+        foreach (Card card in cpuPlayer.hand)
+        {
+            card.Flip();
+        }
+        
+        yield return new WaitForSeconds(1f);
+        
+        // Evaluate hands
+        List<Card> humanFullHand = new List<Card>(humanPlayer.hand);
+        humanFullHand.AddRange(communityCards);
+        
+        List<Card> cpuFullHand = new List<Card>(cpuPlayer.hand);
+        cpuFullHand.AddRange(communityCards);
+        
+        var humanRank = PokerHandEvaluator.EvaluateHand(humanFullHand);
+        var cpuRank = PokerHandEvaluator.EvaluateHand(cpuFullHand);
+        
+        PokerPlayer winner = null;
+        
+        if (humanRank > cpuRank)
+        {
+            winner = humanPlayer;
+            UpdateUI($"You win with {humanRank}!");
+        }
+        else if (cpuRank > humanRank)
+        {
+            winner = cpuPlayer;
+            UpdateUI($"CPU wins with {cpuRank}!");
+        }
+        else
+        {
+            UpdateUI("It's a tie!");
+            humanPlayer.WinPot(pot / 2);
+            cpuPlayer.WinPot(pot / 2);
+            pot = 0;
+        }
+        
+        if (winner != null)
+        {
+            winner.WinPot(pot);
+            pot = 0;
+        }
+        
+        yield return new WaitForSeconds(3f);
+        
+        StartCoroutine(StartNewRound());
+    }
+    
+    IEnumerator EndRound(PokerPlayer winner)
+    {
+        currentState = GameState.RoundEnd;
+        
+        if (winner == humanPlayer)
+            UpdateUI("You win the pot!");
+        else
+            UpdateUI("CPU wins the pot!");
+        
+        winner.WinPot(pot);
+        pot = 0;
+        
+        yield return new WaitForSeconds(2f);
+        
+        StartCoroutine(StartNewRound());
+    }
+    
+    void ClearTable()
+    {
+        humanPlayer.ClearHand();
+        cpuPlayer.ClearHand();
+        
+        foreach (Card card in communityCards)
+        {
+            if (card != null)
+                Destroy(card.gameObject);
+        }
+        communityCards.Clear();
+        
+        if (deck != null)
+        {
+            deck.Shuffle();
+        }
+    }
+    
+    void PositionCommunityCard(Card card, int index)
+    {
+        if (communityCardsPosition != null)
+        {
+            Vector3 offset = new Vector3(index * 0.2f, 0, 0);
+            card.transform.position = communityCardsPosition.position + offset;
+            card.transform.SetParent(communityCardsPosition);
+        }
+    }
+    
+    void EnablePlayerActions(bool enable)
+    {
+        if (foldButton) foldButton.interactable = enable;
+        if (callButton) callButton.interactable = enable;
+        if (raiseButton) raiseButton.interactable = enable;
+        if (checkButton) checkButton.interactable = enable;
+    }
+    
+    void UpdateUI(string status)
+    {
+        if (gameStatusText) gameStatusText.text = status;
+        if (potText) potText.text = "Pot: $" + pot;
+        if (playerChipsText) playerChipsText.text = "$" + humanPlayer.chips;
+        if (cpuChipsText) cpuChipsText.text = "$" + cpuPlayer.chips;
     }
 }
