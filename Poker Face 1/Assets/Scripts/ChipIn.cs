@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChipIn: MonoBehaviour
+public class ChipIn : MonoBehaviour
 {
     [SerializeField] int chips;
     int shopIndex = 0;
@@ -13,12 +13,12 @@ public class ChipIn: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(chips >= 120)
+        if (chips >= 120)
         {
             buttons[0].interactable = true;
         }
 
-        if(chips >= 250)
+        if (chips >= 250)
         {
             buttons[1].interactable = true;
         }
