@@ -1668,7 +1668,7 @@ RectTransform:
   m_Father: {fileID: 1168826342}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2744,8 +2744,8 @@ Transform:
   m_GameObject: {fileID: 568525054}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -163.48518, y: -426.93274, z: 576.8867}
-  m_LocalScale: {x: 1.5960099, y: 1.5960099, z: 1.5960099}
+  m_LocalPosition: {x: -29.039824, y: -75.83593, z: 922.25146}
+  m_LocalScale: {x: 0.28349873, y: 0.28349873, z: 2.551493}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1013239747}
@@ -2755,7 +2755,7 @@ Transform:
   - {fileID: 504144327}
   - {fileID: 504620751}
   - {fileID: 2026046524}
-  m_Father: {fileID: 601873871}
+  m_Father: {fileID: 719043316}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &569502697
 GameObject:
@@ -3001,8 +3001,6 @@ RectTransform:
   - {fileID: 491662636}
   - {fileID: 2139354544}
   - {fileID: 719043316}
-  - {fileID: 1568480688}
-  - {fileID: 568525055}
   - {fileID: 309007901}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3040,6 +3038,8 @@ MonoBehaviour:
   inputField: {fileID: 0}
   useWholeNumbers: 0
   decimalPlaces: 2
+  usePercentageMode: 0
+  sliderButtons: []
 --- !u!1 &615137578
 GameObject:
   m_ObjectHideFlags: 0
@@ -3467,7 +3467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &719043316
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3486,6 +3486,8 @@ RectTransform:
   - {fileID: 1666377384}
   - {fileID: 1940960843}
   - {fileID: 1113621289}
+  - {fileID: 1568480688}
+  - {fileID: 568525055}
   m_Father: {fileID: 601873871}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4434,6 +4436,7 @@ GameObject:
   - component: {fileID: 898900687}
   - component: {fileID: 898900689}
   - component: {fileID: 898900688}
+  - component: {fileID: 898900690}
   m_Layer: 5
   m_Name: Volume Slider
   m_TagString: Untagged
@@ -4476,6 +4479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 898900689}
+  volumeInputField: {fileID: 615137580}
 --- !u!114 &898900689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4521,9 +4525,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 432049522}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 0
+  m_MaxValue: 200
+  m_WholeNumbers: 1
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4539,6 +4543,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &898900690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898900686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6710f7b580bdf8c40b49f0202387a9eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 898900689}
+  inputField: {fileID: 615137580}
+  useWholeNumbers: 1
+  decimalPlaces: 0
+  usePercentageMode: 0
+  sliderButtons: []
 --- !u!1001 &980443510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5182,7 +5204,7 @@ RectTransform:
   m_Father: {fileID: 1004813583}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5979,7 +6001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1568480688
 Transform:
   m_ObjectHideFlags: 0
@@ -5989,8 +6011,8 @@ Transform:
   m_GameObject: {fileID: 1568480687}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -163.48518, y: -426.93274, z: 576.8867}
-  m_LocalScale: {x: 1.5960099, y: 1.5960099, z: 1.5960099}
+  m_LocalPosition: {x: -29.039824, y: -75.83593, z: 922.25146}
+  m_LocalScale: {x: 0.28349873, y: 0.28349873, z: 2.551493}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 462840639}
@@ -6002,7 +6024,7 @@ Transform:
   - {fileID: 878741366}
   - {fileID: 2081582234}
   - {fileID: 615137579}
-  m_Father: {fileID: 601873871}
+  m_Father: {fileID: 719043316}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1573608008
 GameObject:
