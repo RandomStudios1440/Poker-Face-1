@@ -33,6 +33,10 @@ public class MusicManager : MonoBehaviour
         }
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        // apply saved volume on startup
+        float savedVolume = PlayerPrefs.GetFloat("musicVolume", 100f);
+        AudioListener.volume = savedVolume / 100f;
     }
 
     private void OnDestroy()
