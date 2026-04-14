@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: e0e7560c244affb448f08ee1ce2a1192
   - enabled: 1
-    path: Assets/Scenes/Store.unity
+    path: Assets/Scenes/Merchant.unity
     guid: 45dbffcdda6885c4fae0cee29df4e6db
   - enabled: 1
     path: Assets/Scenes/Options.unity
@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Round Begin.unity
     guid: a2fc56545aa0eda468d1cd3383bc0c7a
+  - enabled: 1
+    path: Assets/Scenes/Store.unity
+    guid: 5e584654598da3648b51f827d9f45760
+  - enabled: 1
+    path: Assets/Scenes/Inventory.unity
+    guid: d21e9b9d12385064d8c4c88461fd5e5f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

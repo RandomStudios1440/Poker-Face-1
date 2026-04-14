@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
         else
             SceneManager.LoadScene(1);
     }
-    public void Store()
+    public void Merchant()
     {
         if (SceneTransition.Instance != null)
             SceneTransition.Instance.LoadScene(2);
@@ -49,5 +49,19 @@ public class MainMenu : MonoBehaviour
             SceneTransition.Instance.LoadScene(5);
         else
             SceneManager.LoadScene(5);
+    }
+    public void Store()
+    {
+        if (SceneTransition.Instance != null)
+            SceneTransition.Instance.LoadScene(6);
+        else
+            SceneManager.LoadScene(6);
+    }
+    public void Inventory ()
+    {
+        if(SceneTransition.Instance != null)
+            SceneTransition.Instance.LoadScene(7);
+        else
+            SceneManager.LoadScene(7);
     }
 }
