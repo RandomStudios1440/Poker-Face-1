@@ -26,7 +26,7 @@ public class Chop_In : MonoBehaviour
         }
 
 
-       
+       PlayerRenderer.material = materials[shopIndex];
     }
 
     public void BuyNormalCardDeck()
