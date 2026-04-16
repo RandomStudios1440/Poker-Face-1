@@ -268,7 +268,15 @@ MonoBehaviour:
   scenesToMuteMusic:
   - Game
   - Store
+  - Merchant
+  - Inventory
   - Options
+  secondaryAudioSource: {fileID: 100292477}
+  secondaryTrack: {fileID: 8300000, guid: b4c3fe619ee29c745b0c2339386987fd, type: 3}
+  scenesForSecondaryTrack:
+  - 'Store '
+  - Merchant
+  - Inventory
 --- !u!1 &108542190
 GameObject:
   m_ObjectHideFlags: 0

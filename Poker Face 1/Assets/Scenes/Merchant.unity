@@ -3312,10 +3312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedf92619a040894689a55d947c48a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chips: 0
-  materials: []
-  buttons: []
-  PlayerRenderer: {fileID: 0}
 --- !u!1 &1359419037
 GameObject:
   m_ObjectHideFlags: 0
@@ -3523,7 +3519,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 50273979}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: Menu
+        m_MethodName: Store
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
