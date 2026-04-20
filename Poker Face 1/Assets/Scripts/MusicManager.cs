@@ -65,52 +65,56 @@ public class MusicManager : MonoBehaviour
 
     private void CheckIfShouldPlayMusic(string sceneName)
     {
-        bool shouldMute = false;
+        Debug.Log($"[MusicManager] Scene loaded: {sceneName} | wasInSecondaryScene: {wasInSecondaryScene}");
+
+        // check mute list
         foreach (string mutedScene in scenesToMuteMusic)
         {
             if (sceneName == mutedScene)
             {
-                shouldMute = true;
-                break;
+                Debug.Log($"[MusicManager] Muting all music for scene: {sceneName}");
+                audioSource.Pause();
+                if (secondaryAudioSource != null) secondaryAudioSource.Stop();
+                wasInSecondaryScene = false;
+                return;
             }
-        }
-
-        if (shouldMute)
-        {
-            audioSource.Pause();
-            if (secondaryAudioSource != null) secondaryAudioSource.Stop();
-            wasInSecondaryScene = false;
-            return;
         }
 
         if (IsSecondaryScene(sceneName))
         {
+            Debug.Log($"[MusicManager] Secondary scene detected: {sceneName}");
+            // pause main music
             audioSource.Pause();
+
             if (secondaryAudioSource != null && secondaryTrack != null)
             {
                 secondaryAudioSource.loop = true;
-                // only start from the beginning if we weren't already in a secondary scene
-                if (!wasInSecondaryScene || secondaryAudioSource.clip != secondaryTrack)
+
+                if (secondaryAudioSource.isPlaying && wasInSecondaryScene)
                 {
+                    // already playing from a previous secondary scene, don't restart
+                    Debug.Log("[MusicManager] Secondary track already playing, continuing.");
+                }
+                else
+                {
+                    // first time entering a secondary scene, start fresh
+                    Debug.Log("[MusicManager] Starting secondary track.");
                     secondaryAudioSource.clip = secondaryTrack;
                     secondaryAudioSource.Play();
                 }
-                else if (!secondaryAudioSource.isPlaying)
-                {
-                    secondaryAudioSource.Play();
-                }
-                // if already playing, do nothing — let it continue
             }
             wasInSecondaryScene = true;
         }
         else
         {
-            // leaving a secondary scene — stop secondary, resume main
-            if (wasInSecondaryScene && secondaryAudioSource != null)
+            Debug.Log($"[MusicManager] Non-secondary scene: {sceneName}, stopping secondary track.");
+            // stop secondary track when leaving secondary scenes
+            if (secondaryAudioSource != null)
                 secondaryAudioSource.Stop();
 
             wasInSecondaryScene = false;
 
+            // resume main music
             if (!audioSource.isPlaying)
             {
                 audioSource.time = 0;
