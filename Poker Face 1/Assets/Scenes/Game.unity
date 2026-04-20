@@ -800,6 +800,7 @@ MonoBehaviour:
   inputField: {fileID: 0}
   useWholeNumbers: 0
   decimalPlaces: 2
+  usePercentageMode: 0
   sliderButtons:
   - button: {fileID: 0}
     amount: 0
@@ -4561,6 +4562,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f20590e66bee1434ba200b4cc6a04ad2, type: 3}
   m_PrefabInstance: {fileID: 1324767525}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1348888624
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1358504
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1358504
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1358504
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -58.072
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.338
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.005
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9887313
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0018053561
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.021109503
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.14819418
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.154
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 2.423
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -17.045
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
+      propertyPath: m_Name
+      value: lord black hat
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f7bc7edd2e5b6c24d996a7cde583d9ed, type: 3}
 --- !u!1 &1365098621
 GameObject:
   m_ObjectHideFlags: 0
@@ -6224,3 +6294,4 @@ SceneRoots:
   - {fileID: 169615709}
   - {fileID: 2099387649}
   - {fileID: 350658307}
+  - {fileID: 1348888624}
