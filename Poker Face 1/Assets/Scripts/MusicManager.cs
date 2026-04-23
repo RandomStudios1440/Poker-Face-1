@@ -35,13 +35,10 @@ public class MusicManager : MonoBehaviour
         }
 
         if (audioSource == null)
-        {
             audioSource = GetComponent<AudioSource>();
-        }
 
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        // apply saved volume on startup
         float savedVolume = PlayerPrefs.GetFloat("musicVolume", 100f);
         AudioListener.volume = savedVolume / 100f;
     }
@@ -89,7 +86,6 @@ public class MusicManager : MonoBehaviour
             if (secondaryAudioSource != null && secondaryTrack != null)
             {
                 secondaryAudioSource.loop = true;
-                // only start from the beginning if we weren't already in a secondary scene
                 if (!wasInSecondaryScene || secondaryAudioSource.clip != secondaryTrack)
                 {
                     secondaryAudioSource.clip = secondaryTrack;
@@ -124,9 +120,7 @@ public class MusicManager : MonoBehaviour
         if (musicTracks.Length > 0)
         {
             if (shuffleOnStart)
-            {
                 ShufflePlaylist();
-            }
             PlayNextTrack();
         }
     }
@@ -143,11 +137,8 @@ public class MusicManager : MonoBehaviour
     {
         shuffledIndices = new int[musicTracks.Length];
         for (int i = 0; i < shuffledIndices.Length; i++)
-        {
             shuffledIndices[i] = i;
-        }
 
-        // Fisher-Yates shuffle
         for (int i = shuffledIndices.Length - 1; i > 0; i--)
         {
             int randomIndex = Random.Range(0, i + 1);
@@ -174,13 +165,9 @@ public class MusicManager : MonoBehaviour
             if (loopPlaylist)
             {
                 if (shuffleOnStart)
-                {
                     ShufflePlaylist();
-                }
                 else
-                {
                     currentTrackIndex = 0;
-                }
             }
         }
     }
