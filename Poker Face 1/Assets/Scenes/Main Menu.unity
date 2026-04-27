@@ -295,8 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 100292482}
-  musicTracks:
-  - {fileID: 8300000, guid: 5453aa882f53c06408e96456b7795796, type: 3}
+  musicTracks: []
   shuffleOnStart: 0
   loopPlaylist: 1
   scenesToMuteMusic:
@@ -328,8 +327,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5453aa882f53c06408e96456b7795796, type: 3}
+  m_Resource: {fileID: 8300000, guid: 5453aa882f53c06408e96456b7795796, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 0.86

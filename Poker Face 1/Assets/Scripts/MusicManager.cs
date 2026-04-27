@@ -86,6 +86,7 @@ public class MusicManager : MonoBehaviour
             wasInSecondaryScene = false;
         }
 
+        // both muted, nothing more to do
         if (mutePrimary && muteSecondary) return;
 
         if (IsSecondaryScene(sceneName) && !muteSecondary)
@@ -112,21 +113,24 @@ public class MusicManager : MonoBehaviour
 
             wasInSecondaryScene = true;
         }
-        else if (!IsSecondaryScene(sceneName))
+        else if (!IsSecondaryScene(sceneName) && !mutePrimary)
         {
-            // always stop secondary when entering a non-secondary scene
+            // stop secondary when entering a non-secondary scene
             if (secondaryAudioSource != null)
                 secondaryAudioSource.Stop();
 
             wasInSecondaryScene = false;
 
-            if (!mutePrimary)
-            {
-                // force primary to restart with the current track
-                audioSource.Stop();
-                audioSource.time = 0;
-                PlayNextTrack();
-            }
+            // only resume if not already playing — don't restart mid-track
+            if (!audioSource.isPlaying)
+                audioSource.Play();
+        }
+        else if (!IsSecondaryScene(sceneName) && mutePrimary)
+        {
+            // muted non-secondary scene — just stop secondary
+            if (secondaryAudioSource != null)
+                secondaryAudioSource.Stop();
+            wasInSecondaryScene = false;
         }
     }
 
