@@ -126,20 +126,20 @@ public class PokerGame : MonoBehaviour
         // Simple CPU AI
         int decision = Random.Range(0, 100);
 
-        if (decision < 20)
+        if (decision < 5)
         {
             UpdateUI("CPU folds");
             cpuPlayer.hasFolded = true;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
             StartCoroutine(EndRound(humanPlayer));
         }
-        else if (decision < 70)
+        else if (decision < 50)
         {
             int callAmount = humanPlayer.currentBet - cpuPlayer.currentBet;
             cpuPlayer.PlaceBet(callAmount);
             pot += callAmount;
             UpdateUI("CPU calls");
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             StartCoroutine(DealCommunityCards());
         }
         else
@@ -148,7 +148,7 @@ public class PokerGame : MonoBehaviour
             cpuPlayer.PlaceBet(raiseAmount);
             pot += raiseAmount;
             UpdateUI("CPU raises!");
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             EnablePlayerActions(true);
         }
     }
@@ -166,7 +166,7 @@ public class PokerGame : MonoBehaviour
                 communityCards.Add(card);
                 PositionCommunityCard(card, communityCards.Count - 1);
                 card.Flip();
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(2f);
             }
         }
         else if (currentState == GameState.Flop)
@@ -178,7 +178,7 @@ public class PokerGame : MonoBehaviour
             communityCards.Add(card);
             PositionCommunityCard(card, communityCards.Count - 1);
             card.Flip();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
         }
         else if (currentState == GameState.Turn)
         {
@@ -189,7 +189,7 @@ public class PokerGame : MonoBehaviour
             communityCards.Add(card);
             PositionCommunityCard(card, communityCards.Count - 1);
             card.Flip();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
         }
 
         if (currentState == GameState.River)
@@ -207,7 +207,7 @@ public class PokerGame : MonoBehaviour
         currentState = GameState.Showdown;
         UpdateUI("Showdown!");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         // Flip CPU cards
         foreach (Card card in cpuPlayer.hand)
@@ -215,7 +215,7 @@ public class PokerGame : MonoBehaviour
             card.Flip();
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         // Evaluate hands
         List<Card> humanFullHand = new List<Card>(humanPlayer.hand);
