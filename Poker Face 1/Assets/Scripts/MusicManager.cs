@@ -15,6 +15,11 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioSource secondaryAudioSource;
     [SerializeField] private AudioClip secondaryTrack;
     [SerializeField] private string[] scenesForSecondaryTrack = { "Store", "Merchant", "Inventory" };
+    [Range(0f, 2f)]
+    [SerializeField] private float secondaryVolume = 1f;
+    [Range(-3f, 3f)]
+    [SerializeField] private float secondaryPitch = 1f;
+    [SerializeField] private string[] scenesToMuteSecondaryMusic;
 
     private bool wasInSecondaryScene = false;
 
@@ -62,30 +67,37 @@ public class MusicManager : MonoBehaviour
 
     private void CheckIfShouldPlayMusic(string sceneName)
     {
-        bool shouldMute = false;
+        // check primary mute list
+        bool mutePrimary = false;
         foreach (string mutedScene in scenesToMuteMusic)
-        {
-            if (sceneName == mutedScene)
-            {
-                shouldMute = true;
-                break;
-            }
-        }
+            if (sceneName == mutedScene) { mutePrimary = true; break; }
 
-        if (shouldMute)
-        {
+        // check secondary mute list
+        bool muteSecondary = false;
+        foreach (string mutedScene in scenesToMuteSecondaryMusic)
+            if (sceneName == mutedScene) { muteSecondary = true; break; }
+
+        if (mutePrimary)
             audioSource.Pause();
+
+        if (muteSecondary)
+        {
             if (secondaryAudioSource != null) secondaryAudioSource.Stop();
             wasInSecondaryScene = false;
-            return;
         }
 
-        if (IsSecondaryScene(sceneName))
+        if (mutePrimary && muteSecondary) return;
+
+        if (IsSecondaryScene(sceneName) && !muteSecondary)
         {
-            audioSource.Pause();
+            if (!mutePrimary) audioSource.Pause();
+
             if (secondaryAudioSource != null && secondaryTrack != null)
             {
                 secondaryAudioSource.loop = true;
+                secondaryAudioSource.volume = secondaryVolume;
+                secondaryAudioSource.pitch = secondaryPitch;
+
                 if (!wasInSecondaryScene || secondaryAudioSource.clip != secondaryTrack)
                 {
                     secondaryAudioSource.clip = secondaryTrack;
@@ -95,22 +107,25 @@ public class MusicManager : MonoBehaviour
                 {
                     secondaryAudioSource.Play();
                 }
-                // if already playing, do nothing — let it continue
+                // already playing — continue uninterrupted
             }
+
             wasInSecondaryScene = true;
         }
-        else
+        else if (!IsSecondaryScene(sceneName))
         {
-            // leaving a secondary scene — stop secondary, resume main
-            if (wasInSecondaryScene && secondaryAudioSource != null)
+            // always stop secondary when entering a non-secondary scene
+            if (secondaryAudioSource != null)
                 secondaryAudioSource.Stop();
 
             wasInSecondaryScene = false;
 
-            if (!audioSource.isPlaying)
+            if (!mutePrimary)
             {
+                // force primary to restart with the current track
+                audioSource.Stop();
                 audioSource.time = 0;
-                audioSource.Play();
+                PlayNextTrack();
             }
         }
     }
