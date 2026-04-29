@@ -1382,6 +1382,9 @@ MonoBehaviour:
   isHuman: 0
   hasFolded: 1
   handPosition: {fileID: 1639079484}
+  cardScale: {x: 1, y: 1, z: 1}
+  cardRotation: {x: 0, y: 0, z: 0}
+  cardSpacing: 0.15
 --- !u!4 &282806835
 Transform:
   m_ObjectHideFlags: 0
@@ -4351,6 +4354,9 @@ MonoBehaviour:
   isHuman: 1
   hasFolded: 0
   handPosition: {fileID: 920731763}
+  cardScale: {x: 1, y: 1, z: 1}
+  cardRotation: {x: 0, y: 0, z: 0}
+  cardSpacing: 0.15
 --- !u!1001 &1324767525
 PrefabInstance:
   m_ObjectHideFlags: 0
