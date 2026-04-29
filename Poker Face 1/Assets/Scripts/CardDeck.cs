@@ -6,7 +6,7 @@ public class CardDeck : MonoBehaviour
     public List<Card> cards = new List<Card>();
     public GameObject cardPrefab;
 
-    void Start()
+    void Awake()
     {
         InitializeDeck();
         Shuffle();
@@ -14,6 +14,12 @@ public class CardDeck : MonoBehaviour
 
     void InitializeDeck()
     {
+        if (cardPrefab == null)
+        {
+            Debug.LogError("CardDeck: No card prefab assigned! Please assign a prefab in the Inspector.");
+            return;
+        }
+
         cards.Clear();
 
         foreach (Card.Suit suit in System.Enum.GetValues(typeof(Card.Suit)))
@@ -22,9 +28,11 @@ public class CardDeck : MonoBehaviour
             {
                 GameObject cardObj = Instantiate(cardPrefab, transform.position, Quaternion.identity);
                 cardObj.transform.SetParent(transform);
+
                 Card card = cardObj.GetComponent<Card>();
                 if (card == null)
                     card = cardObj.AddComponent<Card>();
+
                 card.Initialize(suit, rank);
                 cards.Add(card);
                 cardObj.SetActive(false);

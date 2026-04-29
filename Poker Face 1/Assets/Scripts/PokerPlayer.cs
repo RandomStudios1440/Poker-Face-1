@@ -10,9 +10,19 @@ public class PokerPlayer : MonoBehaviour
     public bool hasFolded = false;
     
     public Transform handPosition;
-    
+
+    [Header("Card Layout")]
+    public Vector3 cardScale = Vector3.one;
+    public Vector3 cardRotation = Vector3.zero;
+    public float cardSpacing = 0.15f;
+
     public void AddCardToHand(Card card)
     {
+        if (card == null)
+        {
+            Debug.LogError("AddCardToHand: received a null card. Check that CardDeck prefabs are assigned.");
+            return;
+        }
         hand.Add(card);
         PositionCard(card, hand.Count - 1);
     }
@@ -21,8 +31,10 @@ public class PokerPlayer : MonoBehaviour
     {
         if (handPosition != null)
         {
-            Vector3 offset = new Vector3(index * 0.15f, 0, 0);
+            Vector3 offset = new Vector3(index * cardSpacing, 0, 0);
             card.transform.position = handPosition.position + offset;
+            card.transform.rotation = Quaternion.Euler(cardRotation);
+            card.transform.localScale = cardScale;
             card.transform.SetParent(handPosition);
         }
     }
