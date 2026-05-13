@@ -1346,7 +1346,7 @@ GameObject:
   - component: {fileID: 479315898}
   - component: {fileID: 479315897}
   m_Layer: 5
-  m_Name: We do what we have to text
+  m_Name: You do What You Have To Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1404,7 +1404,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '"You do what you have to."'
+  m_Text: ' You do what you have to.'
 --- !u!222 &479315898
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4313,7 +4313,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: $7,887
+  m_Text: $0
 --- !u!222 &1801085733
 CanvasRenderer:
   m_ObjectHideFlags: 0
