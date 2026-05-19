@@ -2988,8 +2988,8 @@ MonoBehaviour:
   - {fileID: 0}
   communityCardsPosition: {fileID: 1384328355}
   pot: 0
-  smallBlind: 10
-  bigBlind: 20
+  smallBlind: 20
+  bigBlind: 40
   potText: {fileID: 181249338}
   playerChipsText: {fileID: 592757870}
   cpuChipsText: {fileID: 910995382}
@@ -4969,7 +4969,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -158.08, y: -139}
+  m_AnchoredPosition: {x: -153.91, y: -139}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2001745634
